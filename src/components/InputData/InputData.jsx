@@ -1,4 +1,4 @@
-import "./InputData.css";
+import "./InputData.module.css";
 
 function InputData(props) {
   return (
@@ -49,7 +49,7 @@ function InputData(props) {
         </select>
 
         <label htmlFor="voltaje">Voltaje: </label>
-        <select id="voltaje">
+        <select id="voltaje" value={props.voltageValue}>
           {props.voltageOp.map((op, key) => (
             <option key={key}>{op}</option>
           ))}

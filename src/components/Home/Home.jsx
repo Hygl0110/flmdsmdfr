@@ -1,3 +1,4 @@
+import "./Home.module.css";
 import React, { useEffect, useState } from "react";
 import InputData from "../InputData/InputData";
 import { initData } from "../../scripts/intialValues";
