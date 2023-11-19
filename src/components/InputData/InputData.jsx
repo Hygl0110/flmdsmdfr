@@ -1,15 +1,16 @@
 import "./InputData.css";
 
-function InputData() {
+function InputData(props) {
   return (
-    <div className="input_data">
+    <div className="input_data" onChange={props.onChange}>
       <h3>formulario</h3>
-      <form className="form">
+      <form className="form" onSubmit={props.onSubmit}>
         <label htmlFor="desc">Descripcion: </label>
         <input
           type="text"
           id="desc"
           placeholder="Ingrese descripcion"
+          maxlength="20"
           required
         />
 
@@ -41,19 +42,18 @@ function InputData() {
         />
 
         <label htmlFor="fases">Numero de fases: </label>
-        <select id="unidades">
+        <select id="fases">
           <option>{1}</option>
           <option>{2}</option>
           <option>{3}</option>
         </select>
 
         <label htmlFor="voltaje">Voltaje: </label>
-        <input
-          type="number"
-          id="voltaje"
-          placeholder="Ingrese Voltaje"
-          required
-        />
+        <select id="voltaje">
+          {props.voltageOp.map((op, key) => (
+            <option key={key}>{op}</option>
+          ))}
+        </select>
 
         <label htmlFor="distancia">Distnacia al tablero: </label>
         <input

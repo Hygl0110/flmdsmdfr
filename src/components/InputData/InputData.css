@@ -1,4 +1,58 @@
+.input_data {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #abb8c3;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.input_data h3 {
+  font-size: 1.8em;
+  color: #001e4f;
+  margin-bottom: 20px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
+}
+
+label {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+  color: #555;
+  text-align: left;
+}
+
+input,
+select,
+button {
+  margin-bottom: 15px;
+  padding: 12px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #001e4f;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Agregado color a la transición */
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #001e4f;
+}
+
+button {
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Agregado color a la transición */
+}
+
+button:hover {
+  background-color: #001634;
+  color: #fff; /* Cambiado el color del texto cuando se hace hover */
 }

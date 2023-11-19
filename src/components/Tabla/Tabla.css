@@ -1,0 +1,49 @@
+.tabla_container {
+  overflow-x: auto;
+  margin: 20px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.tabla_container h3 {
+  font-size: 1.8em;
+  color: #001e4f; /* Color similar al formulario */
+  padding: 10px;
+}
+
+.tabla th,
+.tabla td {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #001e4f; /* Color similar al formulario */
+}
+
+.tabla th {
+  font-size: 1.2em;
+  background-color: #abb8c3; /* Color similar al formulario */
+  color: #001e4f; /* Color similar al formulario */
+}
+
+.tabla tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.tabla tbody tr:hover {
+  background-color: #e1e6ef; /* Un tono más claro para el hover */
+}
+
+@media (max-width: 600px) {
+  .tabla th,
+  .tabla td {
+    font-size: 1em;
+  }
+}

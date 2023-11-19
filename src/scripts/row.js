@@ -13,7 +13,7 @@ function locateByNum(tabla, valueIn, columnIn, columnOut) {
   return [tabla[columnOut][index], index];
 }
 
-//Buscar valor texto exacto ''10''
+//Buscar valor texto exacto
 function locateByText(tabla, valueIn, columnIn, columnOut) {
   let index = 0;
   for (let element of tabla[columnIn]) {
@@ -32,7 +32,7 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
   const sr3 = Math.sqrt(3);
 
   //calcular potencia aparente en VA
-  const powerUnits = { VA: 1, W: 1, hp: 745.699872, CV: 735.49875 };
+  const powerUnits = { VA: 1, W: 1, hp: 745.699872, cv: 735.49875 };
   const power = (powerIn * powerUnits[unit]) / pf;
 
   //Voltaje de linea
@@ -52,7 +52,9 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
       : undefined;
 
   //PTM
-  const PTM = T240_6.PTM.reverse().find((element) => element < current);
+  const PTM = T240_6.PTM.reverse().find((element) => element < current)
+    ? T240_6.PTM.reverse().find((element) => element < current)
+    : 15;
 
   //RC inicial
   let [phaseCaliber] = locateByNum(T310_16, current, "corriente", "calibre");
@@ -72,9 +74,9 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
         : //trifasico
         phase === 3
         ? ((sr3 * DT * RC * current) / (1000 * voltage)) * 100
-        : caida;
+        : undefined;
 
-    rcIndex++;
+    rcIndex = caida >= 3 ? rcIndex++ : rcIndex;
     RC = T8.RC[rcIndex];
     phaseCaliber = T310_16.calibre[rcIndex];
   }
@@ -95,6 +97,9 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
   //Conduit EMT
   const [EMT] = locateByNum(T4_EMT, totalArea, "area", "ich");
 
+  //Hilos
+  const hilos = phase + 2;
+
   return [
     desc,
     power.toFixed(2),
@@ -109,5 +114,6 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
     caida.toFixed(2),
     PVC,
     EMT,
+    hilos,
   ];
 }
