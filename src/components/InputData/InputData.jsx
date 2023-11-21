@@ -11,9 +11,14 @@ function InputData(props) {
           <select id="circuito" defaultValue={"Seleccione circuito"} required>
             <option value="">--Seleccione circuito--</option>
 
-            {["AG", "PA", "LP", "Personalizado"].map((unidad, key) => (
-              <option key={key} value={unidad}>
-                {unidad}
+            {[
+              ["Alumbrado general", "AG"],
+              ["Pequeños artefactos", "PA"],
+              ["Lavado y planchado", "LP"],
+              ["Personalizado", "Personalizado"],
+            ].map(([tipo, value], key) => (
+              <option key={key} value={value}>
+                {tipo}
               </option>
             ))}
           </select>
