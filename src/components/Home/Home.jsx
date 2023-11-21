@@ -84,7 +84,8 @@ function Home() {
       ? alert(
           "la correinte supera 560A, no hay valores en la Tabla 310-16 de la NTC 2050 para corrientes superiores en diceño 60°C"
         )
-      : newRow[7] === undefined
+      : newRow[7] === `${1} x ${undefined} ${"AWG"}` ||
+        newRow[7] === `${1} x ${undefined} ${"kcmils"}`
       ? alert(
           "Al iterar la caida de tencion se supera el calibre 2000KCMIL, 310-16 de la NTC 2050 no contiene calibres mayores para que el circuito calculado cumpla por caida de tension"
         )
