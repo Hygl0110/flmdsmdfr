@@ -27,6 +27,9 @@ function locateByText(tabla, valueIn, columnIn, columnOut) {
 }
 
 //Calcular fila en cuadro de potencias
+//
+//
+//
 export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
   //raiz cuadrada de tres
   const sr3 = Math.sqrt(3);
@@ -52,9 +55,20 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
       : undefined;
 
   //PTM
-  const PTM = T240_6.PTM.reverse().find((element) => element < current)
-    ? T240_6.PTM.reverse().find((element) => element < current)
-    : 15;
+  let [PTM, PTMup, PTMdown, PTMindex] = [0, 0, 0, 0];
+  for (let valor of T240_6.PTM) {
+    if (valor < current) {
+      PTMindex++;
+    } else {
+      PTMup = T240_6.PTM[PTMindex];
+      PTMdown = T240_6.PTM[PTMindex - 1];
+      break;
+    }
+  }
+
+  //comparasion de la corriente con la proteccion
+  PTM = (PTMup - PTMdown) / 2 > PTMup - current ? PTMup : PTMdown;
+  PTM = PTM === undefined ? 15 : PTM;
 
   //RC inicial
   let [phaseCaliber] = locateByNum(T310_16, current, "corriente", "calibre");
@@ -76,7 +90,7 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
         ? ((sr3 * DT * RC * current) / (1000 * voltage)) * 100
         : undefined;
 
-    rcIndex = caida >= 3 ? rcIndex++ : rcIndex;
+    rcIndex = caida >= 3 ? rcIndex + 1 : rcIndex;
     RC = T8.RC[rcIndex];
     phaseCaliber = T310_16.calibre[rcIndex];
   }
@@ -98,22 +112,22 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
   const [EMT] = locateByNum(T4_EMT, totalArea, "area", "ich");
 
   //Hilos
-  const hilos = phase + 2;
+  const NC = phase + 2;
 
   return [
     desc,
-    power.toFixed(2),
-    voltage,
-    current.toFixed(2),
+    parseFloat(power.toFixed(1)),
+    voltageIn,
+    parseFloat(current.toFixed(1)),
     PTM,
     phase,
     DT,
     phaseCaliber,
     nCaliber,
     gCaliber,
-    caida.toFixed(2),
+    parseFloat(caida.toFixed(2)),
     PVC,
     EMT,
-    hilos,
+    NC,
   ];
 }

@@ -3,19 +3,19 @@ import "./Tabla.css";
 function Tabla(props) {
   const headed = [
     "Descripcion",
-    "Carga",
-    "Voltaje",
-    "Corriente",
-    "PTM",
+    "Carga (VA)",
+    "Voltaje (V)",
+    "Corriente (A)",
+    "PTM (A)",
     "Fases",
-    "DT",
+    "DT (m)",
     "F",
     "N",
     "T",
-    "CT",
-    "PVC",
-    "EMT",
-    "Hilos",
+    "CT (%)",
+    `PVC (")`,
+    `EMT (")`,
+    "NC",
   ];
 
   return (
