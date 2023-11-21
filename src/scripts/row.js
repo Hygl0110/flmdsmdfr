@@ -66,12 +66,13 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
     }
   }
 
-  //comparasion de la corriente con la proteccion
+  //comparasion de la corriente con las protecciones y seleccion de la mas cercana
   PTM = (PTMup - PTMdown) / 2 > PTMup - current ? PTMup : PTMdown;
   PTM = PTM === undefined ? 15 : PTM;
 
   //RC inicial
   let [phaseCaliber] = locateByNum(T310_16, current, "corriente", "calibre");
+  let phaseUnit = "AWG";
   let [RC, rcIndex] = locateByText(T8, phaseCaliber, "calibre", "RC");
   let caida = 100;
 
@@ -93,13 +94,20 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
     rcIndex = caida >= 3 ? rcIndex + 1 : rcIndex;
     RC = T8.RC[rcIndex];
     phaseCaliber = T310_16.calibre[rcIndex];
+    phaseUnit = rcIndex <= 12 ? "AWG" : "kcmils";
   }
 
   //Calibre del Neutro
   const nCaliber = phaseCaliber;
 
   //Calibre a tierra
-  const [gCaliber] = locateByNum(T250_95, current, "corriente", "calibre");
+  const [gCaliber, gIndex] = locateByNum(
+    T250_95,
+    current,
+    "corriente",
+    "calibre"
+  );
+  const gunit = gIndex <= 13 ? "AWG" : "kcmils";
 
   //Area total
   const [phaseArea] = locateByText(T5, phaseCaliber, "calibre", "area");
@@ -119,12 +127,11 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
     parseFloat(power.toFixed(1)),
     voltageIn,
     parseFloat(current.toFixed(1)),
-    PTM,
-    phase,
+    `${phase} x ${PTM}`,
     DT,
-    phaseCaliber,
-    nCaliber,
-    gCaliber,
+    `${phase} x ${phaseCaliber} ${phaseUnit}`,
+    `${1} x ${nCaliber} ${phaseUnit}`,
+    `${1} x ${gCaliber} ${gunit}`,
     parseFloat(caida.toFixed(2)),
     PVC,
     EMT,

@@ -1,5 +1,6 @@
 export const data = {
   entrada: {
+    circuito: "",
     desc: "",
     potencia: 1,
     unidades: "",
@@ -9,7 +10,16 @@ export const data = {
     distancia: 1,
   },
   personalizado: false,
-  numerico: ["potencia", "factor", "fases", "voltaje", "distancia"],
-  minimos: { AG: 1500, PA: 1500, LP: 1500 },
+  AG: false,
+  numerico: ["potencia", "factor", "fases", "voltaje", "distancia", "area"],
+  minimos: {
+    AG: 1500,
+    PA: 1500,
+    LP: 1500,
+    vivienda: 32,
+    hospital: 22,
+    induComercio: 22,
+    colegio: 32,
+  },
   rows: [],
 };

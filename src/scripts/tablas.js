@@ -171,3 +171,14 @@ export const T240_6 = {
     2000, 2500, 3000, 4000, 5000, 6000,
   ],
 };
+
+//AG varga minima
+export const T220_3b = {
+  ocupacion: [
+    "Unidad de vivienda",
+    "Hospital",
+    "Edificio industrial o comercial",
+    "Colegio",
+  ],
+  cargaUnitaria: [32, 22, 22, 32],
+};

@@ -1,6 +1,6 @@
 //imports
 import "./Home.module.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InputData from "../InputData/InputData";
 import Tabla from "../Tabla/Tabla";
 import { row } from "../../scripts/row";
@@ -16,7 +16,7 @@ function Home() {
     //destructuring datos entrada para calculo
     let { entrada, personalizado } = datos;
 
-    //recepcion de datos
+    //recepcion de datosf
     const { id, value } = e.target;
 
     //convertir los string numero a flotante
@@ -27,22 +27,27 @@ function Home() {
     //datos nuevos ingresados
     entrada[id] = newDatoEntrada;
 
-    //reset datos segun el tipo de circuito
-    if (id === "circuito") {
-      personalizado = newDatoEntrada === "Personalizado" ? true : false;
-      entrada.desc =
-        newDatoEntrada !== "Personalizado" ? newDatoEntrada : entrada.desc;
-    }
+    //reset datos, descripcion y numero de fases, segun el tipo de circuito
+    [personalizado, entrada.desc, entrada.fases] =
+      id === "circuito"
+        ? [
+            newDatoEntrada === "Personalizado" ? true : false,
+            newDatoEntrada !== "Personalizado" ? newDatoEntrada : entrada.desc,
+            newDatoEntrada !== "Personalizado" ? 1 : entrada.fases,
+          ]
+        : [personalizado, entrada.desc, entrada.fases];
 
     //reset de factor si se escoge "VA"
-    if (id === "unidades") {
-      entrada.factor = newDatoEntrada === "VA" ? 1 : entrada.factor;
-    }
+    entrada.factor =
+      id === "unidades"
+        ? newDatoEntrada === "VA"
+          ? 1
+          : entrada.factor
+        : entrada.factor;
 
     //reset de voltaje si cambia las fases
-    if (id === "fases") {
-      entrada.voltaje = newDatoEntrada === 1 ? 120 : 208;
-    }
+    entrada.voltaje =
+      id === "fases" ? (newDatoEntrada === 1 ? 120 : 208) : entrada.voltaje;
 
     //objeto de datos nuevo
     const newDatos = {
@@ -61,7 +66,7 @@ function Home() {
     e.preventDefault();
 
     //destructuring datos para calculo y filas previas
-    let { entrada } = data;
+    const { entrada } = data;
 
     //calcular fila para la tabla o resumen del circuito
     const newRow = row(
@@ -74,37 +79,26 @@ function Home() {
       entrada.distancia
     );
 
-    console.log(newRow);
-
     //control si la corriente sobrepasa los 560A
-    if (newRow[3] > 560) {
-      alert(
-        "la correinte supera 560A, no hay valores en la Tabla 310-16 de la NTC 2050 para corrientes superiores en diceño 60°C"
-      );
-    } else if (newRow[7] === undefined) {
-      alert(
-        "Al iterar la caida de tencion se supera el calibre 2000KCMIL, 310-16 de la NTC 2050 no contiene calibres mayores para que el circuito calculado cumpla por caida de tension"
-      );
-    } else {
-      //objeto de datos nuevo
-      const newDatos = {
-        ...datos,
-        rows: [...datos.rows, newRow],
-      };
-
-      setDatos(newDatos);
-    }
+    newRow[3] > 560
+      ? alert(
+          "la correinte supera 560A, no hay valores en la Tabla 310-16 de la NTC 2050 para corrientes superiores en diceño 60°C"
+        )
+      : newRow[7] === undefined
+      ? alert(
+          "Al iterar la caida de tencion se supera el calibre 2000KCMIL, 310-16 de la NTC 2050 no contiene calibres mayores para que el circuito calculado cumpla por caida de tension"
+        )
+      : setDatos({
+          ...datos,
+          rows: [...datos.rows, newRow],
+        });
   };
-
-  useEffect(() => {
-    console.log(datos.entrada);
-  }, [datos]);
 
   //Objetos del DOM
   return (
     <div className="Home">
       <header>
-        <h1>Proytecto Final</h1>
+        <h1>Proyecto Final - Instalaciones Eléctricas Industriales II</h1>
       </header>
       <main>
         <>
@@ -113,8 +107,15 @@ function Home() {
             onSubmit={handleSubmit}
             //control tipo de circuito
             personalizado={datos.personalizado}
+            //control de carga minima
+            AG={datos.AG}
+            minPotencia={
+              ["AG", "PA", "LP"].includes(datos.entrada.desc) ? 1500.0 : 0.1
+            }
             //control factor de potencia
-            factor={datos.entrada.unidades === "VA" ? false : true}
+            factor={
+              ["W", "hp", "cv"].includes(datos.entrada.unidades) ? true : false
+            }
             //control de voltajes segun numero de fases
             valueVoltaje={datos.entrada.voltaje}
             fasesVoltaje={datos.entrada.fases}
@@ -124,7 +125,35 @@ function Home() {
           <Tabla trows={datos.rows} />
         </>
       </main>
-      <footer></footer>
+
+      <>
+        <footer>
+          <h4>Developments:</h4>
+          <p>
+            Daniel Hernney Cardona Jaramillo <br />
+            Juan Camilo Flórez Sanabria <br />
+            Mateo Montoya Uribe <br />
+          </p>
+          <br />
+          <h4>Subjet:</h4>
+          <p>Instalaciones eléctricas industriales II</p>
+          <h4>Professor:</h4>
+          <p>Diego Alejandro Penagos Vásquez</p>
+          <h4>
+            Instituto Tecnológico Metropolitano <br />
+            Facultad de Ingeniería y Electromecánica <br />
+            Medellín <br />
+            2023
+          </h4>
+          <br />
+          <div className="logo">
+            <img
+              src="https://www.itm.edu.co/wp-content/themes/educationpack-child/img/itm-logo-2.svg"
+              alt="ITM"
+            />
+          </div>
+        </footer>
+      </>
     </div>
   );
 }

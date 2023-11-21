@@ -7,7 +7,6 @@ function Tabla(props) {
     "Voltaje (V)",
     "Corriente (A)",
     "PTM (A)",
-    "Fases",
     "DT (m)",
     "F",
     "N",
