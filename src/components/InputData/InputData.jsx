@@ -44,7 +44,7 @@ function InputData(props) {
             type="number"
             id="potencia"
             placeholder="Ingrese potencia"
-            step={0.1}
+            step={0.01}
             min={props.minPotencia}
             required
           />
@@ -72,7 +72,6 @@ function InputData(props) {
               type="number"
               id="factor"
               placeholder="Ingrese factor de potencia"
-              step={0.01}
               min={0.01}
               max={1}
               required
@@ -108,8 +107,7 @@ function InputData(props) {
             type="number"
             id="distancia"
             placeholder="Ingrese distancia al tablero"
-            step={0.1}
-            min={0.1}
+            min={0.01}
             required
           />
         </>

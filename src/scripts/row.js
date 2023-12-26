@@ -124,9 +124,9 @@ export function row(desc, powerIn, unit, pf, phase, voltageIn, DT) {
 
   return [
     desc,
-    parseFloat(power.toFixed(1)),
+    parseFloat(power.toFixed(2)),
     voltageIn,
-    parseFloat(current.toFixed(1)),
+    parseFloat(current.toFixed(2)),
     `${phase} x ${PTM}`,
     DT,
     `${phase} x ${phaseCaliber} ${phaseUnit}`,
