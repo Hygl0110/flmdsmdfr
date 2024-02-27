@@ -41,6 +41,10 @@
   background-color: #e1e6ef; /* Un tono más claro para el hover */
 }
 
+a {
+  color: #fff;
+}
+
 @media (max-width: 600px) {
   .tabla th,
   .tabla td {

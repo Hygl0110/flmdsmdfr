@@ -129,22 +129,24 @@ function Home() {
 
       <>
         <footer>
-          <h4>Developments:</h4>
+          <h4>Developer:</h4>
           <p>
-            Daniel Hernney Cardona Jaramillo <br />
-            Juan Camilo Flórez Sanabria <br />
-            Mateo Montoya Uribe <br />
+            <a
+              href="https://github.com/Hygl0110"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Daniel Hernney Cardona Jaramillo
+            </a>
           </p>
-          <br />
-          <h4>Subjet:</h4>
-          <p>Instalaciones eléctricas industriales II</p>
-          <h4>Professor:</h4>
-          <p>Diego Alejandro Penagos Vásquez</p>
+
           <h4>
-            Instituto Tecnológico Metropolitano <br />
+            <a href="https://www.itm.edu.co/" target="_blank" rel="noreferrer">
+              Instituto Tecnológico Metropolitano
+            </a>
+            <br />
             Facultad de Ingeniería y Electromecánica <br />
             Medellín <br />
-            2023
           </h4>
           <br />
           <div className="logo">
