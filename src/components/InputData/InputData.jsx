@@ -91,7 +91,7 @@ function InputData(props) {
         ) : null}
 
         <>
-          <label htmlFor="voltaje">Voltaje: </label>
+          <label htmlFor="voltaje">Voltaje (V): </label>
           <select id="voltaje" value={props.valueVoltaje} onChange={() => {}}>
             {props.fasesVoltaje === 1
               ? [120, 123.5, 127].map((f, key) => (
@@ -102,7 +102,7 @@ function InputData(props) {
         </>
 
         <>
-          <label htmlFor="distancia">Distnacia al tablero: </label>
+          <label htmlFor="distancia">Distnacia al tablero (m): </label>
           <input
             type="number"
             id="distancia"

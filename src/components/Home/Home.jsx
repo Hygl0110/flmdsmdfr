@@ -99,7 +99,7 @@ function Home() {
   return (
     <div className="Home">
       <header>
-        <h1>Proyecto Final - Instalaciones Eléctricas Industriales II</h1>
+        <h1>Electric-Power-Box</h1>
       </header>
       <main>
         <>
