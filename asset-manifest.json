@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Electric-Power-Box/static/css/main.1ace7394.css",
-    "main.js": "/Electric-Power-Box/static/js/main.3ca42b67.js",
+    "main.js": "/Electric-Power-Box/static/js/main.c7867ba7.js",
     "static/js/787.5a811032.chunk.js": "/Electric-Power-Box/static/js/787.5a811032.chunk.js",
     "index.html": "/Electric-Power-Box/index.html",
     "main.1ace7394.css.map": "/Electric-Power-Box/static/css/main.1ace7394.css.map",
-    "main.3ca42b67.js.map": "/Electric-Power-Box/static/js/main.3ca42b67.js.map",
+    "main.c7867ba7.js.map": "/Electric-Power-Box/static/js/main.c7867ba7.js.map",
     "787.5a811032.chunk.js.map": "/Electric-Power-Box/static/js/787.5a811032.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1ace7394.css",
-    "static/js/main.3ca42b67.js"
+    "static/js/main.c7867ba7.js"
   ]
 }
