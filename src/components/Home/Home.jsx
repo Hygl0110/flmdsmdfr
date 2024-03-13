@@ -111,7 +111,7 @@ function Home() {
             //control de carga minima
             AG={datos.AG}
             minPotencia={
-              ["AG", "PA", "LP"].includes(datos.entrada.desc) ? 1500.0 : 0.1
+              ["AG", "PA", "LP"].includes(datos.entrada.desc) ? 1500.0 : 0.01
             }
             //control factor de potencia
             factor={
