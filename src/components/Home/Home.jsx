@@ -129,7 +129,7 @@ function Home() {
 
       <>
         <footer>
-          <h4>Developer:</h4>
+          <h4>Development:</h4>
           <p>
             <a
               href="https://github.com/Hygl0110"
@@ -138,8 +138,15 @@ function Home() {
             >
               Daniel Hernney Cardona Jaramillo
             </a>
+            <br />
+            Juan Camilo Flórez Sanabria <br />
+            Mateo Montoya Uribe <br />
           </p>
 
+          <h4>Subjet:</h4>
+          <p>Instalaciones eléctricas industriales II</p>
+          <h4>Professor:</h4>
+          <p>Diego Alejandro Penagos Vásquez</p>
           <h4>
             <a href="https://www.itm.edu.co/" target="_blank" rel="noreferrer">
               Instituto Tecnológico Metropolitano
