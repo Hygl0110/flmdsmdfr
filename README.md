@@ -7,10 +7,8 @@ This project is a web application developed using React that facilitates electri
 To clone this repository to your local machine, you can use the following command:
 
 ```bash
-gh repo clone Hygl0110/Electric-Power-Box
+git clone https://github.com/Hygl0110/Electric-Power-Box
 ```
-
-If you haven't installed GitHub CLI yet, you can do so from [here](https://cli.github.com/).
 
 Once cloned, navigate to the project directory:
 
